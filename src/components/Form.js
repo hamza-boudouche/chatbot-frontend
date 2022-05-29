@@ -1,6 +1,6 @@
 import React from 'react';
-import AddEventForm from './FormTypes/AddEventForm';
-import UpdateEventForm from './FormTypes/UpdateEventForm';
+import AddEventForm from './FormTypes/Google calendar/AddEventForm';
+import UpdateEventForm from './FormTypes/Google calendar/UpdateEventForm';
 
 const Form = ({ sendMessageSocket, formType, info }) => {
   switch (formType) {

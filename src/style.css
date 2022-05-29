@@ -255,3 +255,37 @@ body,
 .hidden {
   opacity: 0;
 }
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #0b93f6;
+}
+
+.card-container:hover {
+  background-color: #a2d8ff;
+}
+
+.card-chosen {
+  background-color: #e1e1e1;
+}
+
+.card-main {
+}
+
+.card-title {
+  font-size: larger;
+  margin-top: 0;
+}
+
+.card-side-info {
+}
+
+.card-description {
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

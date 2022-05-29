@@ -10,13 +10,28 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Slide from '@mui/material/Slide';
+import TextField from '@mui/material/TextField';
+import axios from 'axios'
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { CardActionArea } from '@mui/material';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog() {
+export default function FullScreenDialog({ sendMessageSocket }) {
 	const [open, setOpen] = React.useState(false);
+	const [eventList, setEventList] = React.useState([{
+		title: "event",
+		description: "this is a description"
+	},
+	{
+		title: "event",
+		description: "this is a description"
+	}]);
+	const [dateNaturalLangage, setDateNaturalLangage] = React.useState("initial");
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -25,6 +40,14 @@ export default function FullScreenDialog() {
 	const handleClose = () => {
 		setOpen(false);
 	};
+
+	const fetchEvents = async () => {
+		const resp = await axios.post("http://localhost:5034/events", {
+			date: dateNaturalLangage
+		})
+		setEventList(resp.data)
+		setDateNaturalLangage("")
+	}
 
 	return (
 		<div>
@@ -37,7 +60,7 @@ export default function FullScreenDialog() {
 				onClose={handleClose}
 				TransitionComponent={Transition}
 			>
-				<AppBar sx={{ position: 'relative' }}>
+				<AppBar sx={{ position: 'relative', backgroundColor: '#6649b8' }}>
 					<Toolbar>
 						<IconButton
 							edge="start"
@@ -49,24 +72,42 @@ export default function FullScreenDialog() {
 							<p>x</p>
 						</IconButton>
 						<Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-							Sound
+							Choose an event
 						</Typography>
-						<Button autoFocus color="inherit" onClick={handleClose}>
-							save
+						<TextField id="standard-basic" label="Date" variant="outlined" color="primary" value={dateNaturalLangage} onChange={(e) => { setDateNaturalLangage(e.target.value) }} />
+						<Button autoFocus variant="outlined" color="inherit" onClick={fetchEvents} style={{
+							marginLeft: '10px',
+							height: "60%",
+							margin: "1px solid grey"
+						}}>
+							Search
 						</Button>
 					</Toolbar>
 				</AppBar>
-				<List>
-					<ListItem button>
-						<ListItemText primary="Phone ringtone" secondary="Titania" />
-					</ListItem>
-					<Divider />
-					<ListItem button>
-						<ListItemText
-							primary="Default notification ringtone"
-							secondary="Tethys"
-						/>
-					</ListItem>
+				<List style={{
+					margin: "auto",
+					minWidth: "600px",
+					display: "grid",
+					alignItems: "center",
+					justifyContent: "center",
+				}}>
+					{/* {console.log(eventList.length !== 0)} */}
+					{eventList.length ? eventList.map((event, index) => (
+						<div key={index}>
+							<Card sx={{ minWidth: "600px", padding: "20px", marginBottom: "10px", backgroundColor: "#0b93f6" }}>
+								<div styles={{ display: "flex" }}>
+									<main>
+										<h5>{event.title}</h5>
+										<p>{event.description}</p>
+									</main>
+									<h6>Monday 8am</h6>
+								</div>
+							</Card>
+						</div>
+					)) :
+						<ListItem button onClick={() => console.log("hello")}>
+							<ListItemText primary="enter a date above" secondary="dates in natural language" />
+						</ListItem>}
 				</List>
 			</Dialog>
 		</div>

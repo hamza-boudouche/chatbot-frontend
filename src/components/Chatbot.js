@@ -5,9 +5,11 @@ import useSend from "../hooks/useSend";
 import MessagesContext from "../context/MessagesContext";
 import useMessages from "../hooks/useMessages";
 import Form from "./Form";
-import AddEventForm from "./FormTypes/AddEventForm";
-import UpdateEventForm from "./FormTypes/UpdateEventForm"
-import FullScreenDialog from './Test';
+import AddEventForm from "./FormTypes/Google calendar/AddEventForm";
+import UpdateEventForm from "./FormTypes/Google calendar/UpdateEventForm"
+import DeleteEventForm from "./FormTypes/Google calendar/DeleteEventForm"
+import GetEventForm from './FormTypes/Google calendar/GetEventForm';
+
 
 const Chatbot = () => {
   const myMessages = useContext(MessagesContext);
@@ -83,9 +85,10 @@ const Chatbot = () => {
               />
             )
           )}
-        {/* <AddEventForm /> */}
+        <AddEventForm />
         <UpdateEventForm />
-        <FullScreenDialog />
+        <DeleteEventForm />
+        <GetEventForm />
         <div ref={dummy}></div>
         <Message message="" hidden={true} />
       </div>

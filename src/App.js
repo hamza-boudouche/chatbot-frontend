@@ -1,13 +1,36 @@
 import React from 'react';
 import NavBar from './components/Navbar';
 import Chatbot from './components/Chatbot';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import history from "./utils/history";
 import './style.css';
+import initFontAwesome from "./utils/initFontAwesome";
+import { useAuth0 } from "@auth0/auth0-react";
+import Loading from "./components/Loading"
+
+initFontAwesome();
 
 export default function App() {
+  const { isLoading, error } = useAuth0();
+
+  if (error) {
+    return <div>Oops... {error.message}</div>;
+  }
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
-    <>
+    <BrowserRouter history={history}>
       <NavBar />
-      <Chatbot />
-    </>
+      {/* <Chatbot /> */}
+      <Routes>
+        <Route path="/" exact element={<div></div>} />
+        <Route path="/chat" element={<Chatbot />} />
+        <Route path="/profile" element={<div></div>} />
+        <Route path="/settings" element={<div></div>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
