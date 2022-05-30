@@ -4,9 +4,9 @@ import UpdateEventForm from './FormTypes/Google calendar/UpdateEventForm';
 
 const Form = ({ sendMessageSocket, formType, info }) => {
   switch (formType) {
-    case 'addEventForm':
+    case 'add_event':
       return <AddEventForm sendMessageSocket={sendMessageSocket} info={info} />;
-    case 'modifyEventForm':
+    case 'modify_event':
       return (
         <UpdateEventForm sendMessageSocket={sendMessageSocket} info={info} />
       );

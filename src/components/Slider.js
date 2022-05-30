@@ -11,12 +11,13 @@ import Typography from '@mui/material/Typography';
 import Slide from '@mui/material/Slide';
 import TextField from '@mui/material/TextField';
 import EventCard from './Cards/EventCard';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Slider = ({ open, title, input, setInput, fetch, data, handleClose, setChosen }) => {
+const Slider = ({ open, title, input, setInput, fetch, data, handleClose, chosen, setChosen }) => {
 	return (
 		<Dialog
 			fullScreen
@@ -32,16 +33,16 @@ const Slider = ({ open, title, input, setInput, fetch, data, handleClose, setCho
 						onClick={handleClose}
 						aria-label="close"
 					>
-						{/* <CloseIcon /> */}
-						<p>x</p>
+						<CloseIcon />
 					</IconButton>
 					<Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
 						{title}
 					</Typography>
-					<TextField id="standard-basic" label="Date" variant="outlined" color="primary" value={input} onChange={(e) => { setInput(e.target.value) }} />
+					<TextField id="standard-basic" label="Start Date" variant="outlined" color="primary" value={input} onChange={(e) => { setInput(e.target.value) }} />
+					<TextField id="standard-basic" label="End Date" variant="outlined" color="primary" value={input} onChange={(e) => { setInput(e.target.value) }} sx={{ marginLeft: 2 }} />
 					<Button autoFocus variant="outlined" color="inherit" onClick={fetch} style={{
 						marginLeft: '10px',
-						height: "60%",
+						height: "82%",
 						margin: "1px solid grey"
 					}}>
 						Search
@@ -55,7 +56,6 @@ const Slider = ({ open, title, input, setInput, fetch, data, handleClose, setCho
 				alignItems: "center",
 				justifyContent: "center",
 			}}>
-				{/* {console.log(eventList.length !== 0)} */}
 				{data.length ? data.map((element, index) => (
 					<div key={index}>
 						<EventCard element={element} setChosen={setChosen} />

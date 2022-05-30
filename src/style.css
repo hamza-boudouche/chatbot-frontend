@@ -289,3 +289,8 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+h5 {
+  margin: 0;
+  text-align: center;
+}

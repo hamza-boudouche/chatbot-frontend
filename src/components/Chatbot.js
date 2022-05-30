@@ -18,13 +18,16 @@ const Chatbot = () => {
   const [btnVisible, setBtnVisible] = useState(false)
 
   const observer = new IntersectionObserver(
-    ([entry]) => setBtnVisible(!entry.isIntersecting)
+    ([entry]) => {
+      console.log(entry)
+      setBtnVisible(!entry.isIntersecting)
+    }
   )
 
   useEffect(() => {
+    // console.log(dummy.current)
     observer.observe(dummy.current)
     return () => { observer.disconnect() }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dummy])
 
   const addReplyMessage = useCallback(
@@ -44,6 +47,10 @@ const Chatbot = () => {
     },
     [dispatch, dummy]
   );
+
+  useEffect(() => {
+    dummy.current.scrollIntoView({ behavior: "smooth" });
+  }, [state.messages])
 
   const [sendMessageSocket] = useSend(addReplyMessage);
 
@@ -72,6 +79,7 @@ const Chatbot = () => {
           state.messages.map((msg, index) =>
             msg.isForm ? (
               <Form
+                key={index}
                 sendMessageSocket={sendMessageSocket}
                 formType={msg.formType}
                 info={msg.info}
@@ -85,11 +93,15 @@ const Chatbot = () => {
               />
             )
           )}
-        <AddEventForm />
+        {/* <AddEventForm />
         <UpdateEventForm />
         <DeleteEventForm />
-        <GetEventForm />
-        <div ref={dummy}></div>
+        <GetEventForm /> */}
+        <div ref={dummy} style={{
+          width: 20,
+          height: 20,
+          backgroundColor: "red"
+        }}></div>
         <Message message="" hidden={true} />
       </div>
       <FormMessage sendMessage={sendMessage} dummy={dummy} />

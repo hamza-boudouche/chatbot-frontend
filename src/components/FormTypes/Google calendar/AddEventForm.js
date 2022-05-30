@@ -22,6 +22,7 @@ const AddEventForm = ({ sendMessageSocket, info }) => {
           />
         </div>
         <form className="form-body" onSubmit={sendRequest}>
+          <h5>Add event</h5>
           <label className="contained">Event title</label>
           <input
             type="text"
@@ -54,7 +55,7 @@ const AddEventForm = ({ sendMessageSocket, info }) => {
             className="data_input"
             onChange={(e) => setEndTime(e.target.value)}
           />
-          <input type="submit" value="Envoyer" className="data_submit" />
+          <input type="submit" value="Add" className="data_submit" />
         </form>
       </div>
     </>
