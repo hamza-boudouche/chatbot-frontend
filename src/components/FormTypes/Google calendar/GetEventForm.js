@@ -2,7 +2,6 @@ import React from 'react';
 import Slider from '../../Slider';
 import axios from 'axios'
 
-
 const GetEventForm = ({ sendMessageSocket, info }) => {
 	const [open, setOpen] = React.useState(false);
 	const [startDateNaturalLangage, setStartDateNaturalLangage] = React.useState("");

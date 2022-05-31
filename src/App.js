@@ -16,7 +16,7 @@ initFontAwesome();
 export default function App() {
   const { isLoading, error } = useAuth0();
 
-  const [ThemeContext, dispatch] = useColorTheme();
+  const [state, dispatch] = useColorTheme();
 
   if (error) {
     return <div>Oops... {error.message}</div>;
@@ -28,15 +28,13 @@ export default function App() {
 
   return (
     <BrowserRouter history={history}>
-      <ThemeContext.Provider value={"dark"}>
-        <NavBar />
-        <Routes>
-          <Route path="/" exact element={<div></div>} />
-          <Route path="/chat" element={<Chatbot />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/settings" element={<Settings />} />
-        </Routes>
-      </ThemeContext.Provider>
+      <NavBar />
+      <Routes>
+        <Route path="/" exact element={<div></div>} />
+        <Route path="/chat" element={<Chatbot />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/settings" element={<Settings />} />
+      </Routes>
     </BrowserRouter>
   );
 }

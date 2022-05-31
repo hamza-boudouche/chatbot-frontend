@@ -9,6 +9,7 @@ import AddEventForm from "./FormTypes/Google calendar/AddEventForm";
 import UpdateEventForm from "./FormTypes/Google calendar/UpdateEventForm"
 import DeleteEventForm from "./FormTypes/Google calendar/DeleteEventForm"
 import GetEventForm from './FormTypes/Google calendar/GetEventForm';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 
 const Chatbot = () => {
@@ -25,7 +26,6 @@ const Chatbot = () => {
   )
 
   useEffect(() => {
-    // console.log(dummy.current)
     observer.observe(dummy.current)
     return () => { observer.disconnect() }
   }, [dummy])
@@ -72,7 +72,7 @@ const Chatbot = () => {
       <div className="messages-list">
         {btnVisible && <a href="#end">
           <div id="end-link" onClick={() => dummy.current.scrollIntoView({ behavior: "smooth" })}>
-            v
+            <KeyboardArrowDownIcon />
           </div>
         </a>}
         {state.messages &&
@@ -100,7 +100,6 @@ const Chatbot = () => {
         <div ref={dummy} style={{
           width: 20,
           height: 20,
-          backgroundColor: "red"
         }}></div>
         <Message message="" hidden={true} />
       </div>

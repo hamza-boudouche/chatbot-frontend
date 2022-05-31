@@ -16,8 +16,8 @@ function reducer(state, action) {
 const useColorTheme = () => {
 	let initialState = "dark";
 	const [state, dispatch] = React.useReducer(reducer, initialState);
-	const ThemeContext = React.createContext(state);
-	return [ThemeContext, dispatch];
+	// const ThemeContext = React.createContext(state);
+	return [state, dispatch];
 }
 
 export default useColorTheme;

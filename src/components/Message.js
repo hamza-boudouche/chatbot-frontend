@@ -1,9 +1,13 @@
 import React, { useRef, useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
+import botPic from "../assets/bot.png";
 
 const Message = ({ message: { local, text }, hidden, end, setBtnVisible }) => {
+  const { user } = useAuth0();
   const messageClass = local ? 'sent' : 'received';
   const ref = useRef(null)
   // console.log(ref)
+  console.log(user)
 
   useEffect(() => {
     console.log(ref.current);
@@ -13,8 +17,13 @@ const Message = ({ message: { local, text }, hidden, end, setBtnVisible }) => {
     <div className={`message ${messageClass} ${hidden ? "hidden" : ""}`} id={end ? "end" : ""} ref={ref}>
       <div className="avatar">
         <img
-          src="https://cdn-icons-png.flaticon.com/512/1250/1250689.png"
+          src={messageClass === "sent" && user?.picture ? user?.picture : botPic}
           alt="avatar"
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: "50%",
+          }}
         />
       </div>
       <div className="message-body">
