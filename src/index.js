@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { Auth0Provider } from "@auth0/auth0-react";
 import history from "./utils/history";
 import { getConfig } from "./config";
-
+import header from "./components/Navbar";
+import Footer from './components/Footer';
 import App from './App';
 
 const onRedirectCallback = (appState) => {
@@ -27,6 +28,7 @@ const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
 root.render(
+  
   <StrictMode>
     <Auth0Provider {...providerConfig}>
       <App />

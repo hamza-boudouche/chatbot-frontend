@@ -7,24 +7,38 @@ body,
 #root {
   margin: 0;
   padding: 0;
-  background-color: #60697a;
+  background-color: #ffffff;
+  /* /* background-image: url("./assets/bot.gif");
+  background-position: left;
+  background-repeat: no-repeat; 
+  background-size: cover;  */
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.chatbot {
+.imgbot{
   position: absolute;
-  bottom: 0;
-  height: 90vh;
+  height: 70vh;
+  margin-top: 0%;
+  margin-left: 10%;
+}
+.chatbot {
+  position: relative;
+  height: 70vh;
+  margin-top: 0%;
+  margin-bottom: 10%;
   width: min(100%, 600px);
-  margin: auto;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 55%;
   overflow-y: scroll;
+}
+.spinner{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 15%;
 }
 
 .messages {
@@ -75,11 +89,11 @@ body,
   background-color: #e5e5ea;
 }
 
-.sent > .message-body {
+.sent>.message-body {
   background-color: #0b93f6;
 }
 
-.avatar > img {
+.avatar>img {
   width: 30px;
   height: 30px;
   margin: auto;
@@ -95,25 +109,25 @@ body,
   justify-content: flex-end; */
 }
 
-.chatbot > form {
+.chatbot>form {
   position: fixed;
-  bottom: 0;
+  bottom: 80;
   display: flex;
   width: inherit;
   background-color: aquamarine;
   align-items: stretch;
   margin: 0;
-  height: 10vh;
+  height: 6vh;
 }
 
 .message-field {
   flex-grow: 1;
-  background-color: rgb(58, 58, 58);
+  background-color: rgb(205, 146, 64);
   border: none;
   padding: 20px;
   font-size: larger;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgb(130, 165, 211);
+  color: rgb(4, 4, 4);
   width: 70%;
 }
 
@@ -162,26 +176,70 @@ body,
   display: none !important;
 }
 
-.navbar {
+.footer {
   position: fixed;
+  background-color: rgb(230, 108, 15);
+  width: 100%;
+  height: 3%;
+  /* margin: auto; */
+  display: flex;
+  flex-direction: row;
+  bottom: 0;
+  justify-content: center;
+  /* z-index:0 */
+}
+
+.content {
+  left: 0;
+  right: 0;
+  top: 1;
+  bottom: 0;
+  height: auto;
+  max-width: auto;
+  max-height: 100%;
+
+}
+
+.navbar {
+  position: relative;
   background-color: white;
   width: 100%;
-  height: 10vh;
-  z-index: 2;
-  /* margin: auto; */
+  height: 9%;
+  margin-top: 0;
   display: flex;
   flex-direction: row;
 }
 
 .logo {
+
   justify-self: start;
+  position: absolute;
+  height: 100%;
+  width: 20%;
+}
+
+.carousel {
+
+  height: 200px;
+  width: auto;
+}
+
+.imgcarousel {
+  object-fit: fill;
+  height: 650;
+  width: 1550;
+}
+
+.logoimg {
+  width: 100%;
+  height: 100%;
 }
 
 .navlist {
   margin-left: auto;
 }
 
-.navlist > ul {
+.navlist>ul {
   list-style-type: none;
   display: flex;
   flex-direction: row;
@@ -201,9 +259,32 @@ body,
   justify-content: center;
   min-width: 6rem;
   margin: 1rem;
-  background-color: rgb(99, 0, 192);
-  color: white;
+  background-color: #fdfdfd;
+  color: #c96d17;
   cursor: pointer;
+  font-weight: 550;
+}
+.account{
+  width: 10px;
+  height: 10px;
+}
+.nav-elementor {
+  /* border: solid 1px #ccc; */
+  padding-top: 2%;
+  padding-bottom: 3%;
+  padding-right: 5%;
+  padding-left: 5%;
+  text-align: center;
+  border-radius: 5px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  min-width: 6rem;
+  margin: 1rem;
+  background-color: #ffc400;
+  color: #c96d17;
+  cursor: pointer;
+  font-weight: 550;
 }
 
 .form-body {
@@ -214,6 +295,11 @@ body,
   display: flex;
   flex-direction: column;
   width: 60vw;
+}
+
+.carousel {
+  width: 100%;
+  height: 100%;
 }
 
 .contained {
@@ -255,7 +341,19 @@ body,
 .hidden {
   opacity: 0;
 }
-
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
+  width: 100%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
 .card-container {
   display: flex;
   justify-content: space-between;
@@ -271,21 +369,20 @@ body,
   background-color: #e1e1e1;
 }
 
-.card-main {
-}
+.card-main {}
 
 .card-title {
   font-size: larger;
   margin-top: 0;
 }
 
-.card-side-info {
-}
+.card-side-info {}
 
-.card-description {
-}
+.card-description {}
 
 a {
   text-decoration: none;
   color: inherit;
 }
+
+

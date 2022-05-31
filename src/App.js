@@ -6,8 +6,9 @@ import history from "./utils/history";
 import './style.css';
 import initFontAwesome from "./utils/initFontAwesome";
 import { useAuth0 } from "@auth0/auth0-react";
-import Loading from "./components/Loading"
-
+import Loading from "./components/Loading";
+import Footer from "./components/Footer";
+import Content from "./components/Content";
 initFontAwesome();
 
 export default function App() {
@@ -23,14 +24,17 @@ export default function App() {
 
   return (
     <BrowserRouter history={history}>
-      <NavBar />
-      {/* <Chatbot /> */}
-      <Routes>
-        <Route path="/" exact element={<div></div>} />
-        <Route path="/chat" element={<Chatbot />} />
-        <Route path="/profile" element={<div></div>} />
-        <Route path="/settings" element={<div></div>} />
-      </Routes>
+
+        <NavBar />
+        {/* <Chatbot /> */}
+        
+        <Footer />
+        <Routes>
+          <Route path="/" exact element={<Content />} />
+          <Route path="/chat" element={<Chatbot />} />
+          <Route path="/profile" element={<div></div>} />
+          <Route path="/settings" element={<div></div>} />
+        </Routes>
     </BrowserRouter>
   );
 }

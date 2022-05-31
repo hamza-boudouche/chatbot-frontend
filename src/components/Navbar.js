@@ -11,39 +11,29 @@ import Logout from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import { Link } from "react-router-dom";
-
+import logo from "../assets/logohome.jpg";
+import account from "../assets/logo.jpeg";
 const Navbar = () => {
-  const {
-    user,
-    isAuthenticated,
-    loginWithRedirect,
-    logout,
-  } = useAuth0();
+  const {user,isAuthenticated,loginWithRedirect,logout,} = useAuth0();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const logoutWithRedirect = () =>
-    logout({
-      returnTo: window.location.origin,
-    });
+  const logoutWithRedirect = () =>  logout({ returnTo: window.location.origin, });
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const handleClick = (event) => {  setAnchorEl(event.currentTarget); };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const handleClose = () => {  setAnchorEl(null); };
 
   return (
     <div className="navbar">
-      <div className="logo">logo</div>
+      <div className="logo"><img className="logoimg"src={logo}></img></div>
       <div className="navlist">
         <ul>
+          <li className="nav-element">Features</li>
           <li className="nav-element">About us</li>
           {!isAuthenticated && (
-            <li className="nav-element" onClick={() => loginWithRedirect()}>Login</li>
+            <li className="nav-elementor" onClick={() => loginWithRedirect()}>Register\Login</li>
           )}
           {isAuthenticated && (
             <>
