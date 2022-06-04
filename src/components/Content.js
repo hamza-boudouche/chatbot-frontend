@@ -12,14 +12,11 @@ export default function Content() {
                 autoplay={true}
                 speed={1000}
                 wrapAround={true}
-                
                 adaptiveHeight={false}>
-                <img className="imgcarousel" src={img3} />
+                <img className="imgcarousel" src={img3}  />
                 <img className="imgcarousel" src={img1} />
                 <img className="imgcarousel" src={img2} />
-
             </Carousel>
-
         </div>
 
     )

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import Slider from '../../Slider';
+import logo from './user.png';
 
 const UpdateEventForm = ({ sendMessageSocket, info }) => {
   const [title, setTitle] = useState(info?.title || '');
@@ -50,7 +51,7 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
       <div className={`message received`}>
         <div className="avatar">
           <img
-            src="https://cdn-icons-png.flaticon.com/512/1250/1250689.png"
+            src={logo}
             alt="profile"
           />
         </div>

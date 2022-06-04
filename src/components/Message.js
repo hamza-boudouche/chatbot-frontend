@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import useOnScreen from "../hooks/useOnScreen"
 
+import logo from '../assets/user.png';
+
 const Message = ({ message: { local, text }, hidden, end, setBtnVisible }) => {
   const messageClass = local ? 'sent' : 'received';
   const ref = useRef(null)
@@ -19,7 +21,7 @@ const Message = ({ message: { local, text }, hidden, end, setBtnVisible }) => {
     <div className={`message ${messageClass} ${hidden ? "hidden" : ""}`} id={end ? "end" : ""} ref={ref}>
       <div className="avatar">
         <img
-          src="https://cdn-icons-png.flaticon.com/512/1250/1250689.png"
+          src={logo}
           alt="avatar"
         />
       </div>

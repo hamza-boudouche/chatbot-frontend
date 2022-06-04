@@ -61,8 +61,9 @@ const Chatbot = () => {
   };
 
   return (
-    <div>
-      <img src={bot} className="imgbot"></img>
+    <div >
+      <img src={bot} className="imgbotleft"></img>
+      <img src={bot} className="imgbotright"></img>
       <div className="chatbot">
         <div className="messages-list ">
           {btnVisible && <a href="#end">

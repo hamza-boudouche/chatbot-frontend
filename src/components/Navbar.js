@@ -11,7 +11,7 @@ import Logout from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import { Link } from "react-router-dom";
-import logo from "../assets/logohome.jpg";
+import logo from "../assets/Image1.png";
 import account from "../assets/logo.jpeg";
 const Navbar = () => {
   const {user,isAuthenticated,loginWithRedirect,logout,} = useAuth0();
@@ -27,11 +27,15 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div className="logo"><img className="logoimg"src={logo}></img></div>
+      <Link to={"/"} className="logo"><img className="logoimg"src={logo}></img></Link>
       <div className="navlist">
         <ul>
-          <li className="nav-element">Features</li>
-          <li className="nav-element">About us</li>
+        {isAuthenticated && (
+            <li className="nav-element"> <Link to="/chat">Chat</Link></li>
+          )}
+          <li className="nav-element " ><Link to={"/Features"}>Features</Link></li>
+          <li className="nav-element"><Link to={"AboutUs"}>About us</Link></li>
+          
           {!isAuthenticated && (
             <li className="nav-elementor" onClick={() => loginWithRedirect()}>Register\Login</li>
           )}

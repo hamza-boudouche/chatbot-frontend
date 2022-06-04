@@ -9,6 +9,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "./components/Loading";
 import Footer from "./components/Footer";
 import Content from "./components/Content";
+import Features from './components/Features';
+import AboutUs from './components/AboutUs';
 initFontAwesome();
 
 export default function App() {
@@ -31,6 +33,8 @@ export default function App() {
         <Footer />
         <Routes>
           <Route path="/" exact element={<Content />} />
+          <Route path="/Features" element={<Features />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/chat" element={<Chatbot />} />
           <Route path="/profile" element={<div></div>} />
           <Route path="/settings" element={<div></div>} />
