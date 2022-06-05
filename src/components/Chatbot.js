@@ -10,6 +10,7 @@ import UpdateEventForm from "./FormTypes/Google calendar/UpdateEventForm"
 import DeleteEventForm from "./FormTypes/Google calendar/DeleteEventForm"
 import GetEventForm from './FormTypes/Google calendar/GetEventForm';
 import bot from "../assets/bot.gif";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const Chatbot = () => {
   const myMessages = useContext(MessagesContext);
@@ -18,13 +19,15 @@ const Chatbot = () => {
   const [btnVisible, setBtnVisible] = useState(false)
 
   const observer = new IntersectionObserver(
-    ([entry]) => setBtnVisible(!entry.isIntersecting)
+    ([entry]) => {
+      console.log(entry)
+      setBtnVisible(!entry.isIntersecting)
+    }
   )
 
   useEffect(() => {
     observer.observe(dummy.current)
     return () => { observer.disconnect() }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dummy])
 
   const addReplyMessage = useCallback(
@@ -44,6 +47,10 @@ const Chatbot = () => {
     },
     [dispatch, dummy]
   );
+
+  useEffect(() => {
+    dummy.current.scrollIntoView({ behavior: "smooth" });
+  }, [state.messages])
 
   const [sendMessageSocket] = useSend(addReplyMessage);
 
@@ -68,7 +75,7 @@ const Chatbot = () => {
         <div className="messages-list ">
           {btnVisible && <a href="#end">
             <div id="end-link" onClick={() => dummy.current.scrollIntoView({ behavior: "smooth" })}>
-              v
+              <KeyboardArrowDownIcon />
             </div>
           </a>}
           {state.messages &&

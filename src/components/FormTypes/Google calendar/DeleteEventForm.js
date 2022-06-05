@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Slider from '../../Slider';
 import axios from 'axios'
 import logo from './user.png';
@@ -6,7 +6,8 @@ import logo from './user.png';
 
 const DeleteEventForm = ({ sendMessageSocket, info }) => {
 	const [open, setOpen] = React.useState(false);
-	const [dateNaturalLangage, setDateNaturalLangage] = React.useState("initial");
+	const [startDateNaturalLangage, setStartDateNaturalLangage] = React.useState("");
+	const [endDateNaturalLangage, setEndDateNaturalLangage] = React.useState("");
 	const [eventList, setEventList] = React.useState([{
 		title: "event",
 		description: "this is a description"
@@ -22,15 +23,21 @@ const DeleteEventForm = ({ sendMessageSocket, info }) => {
 
 	const fetchEvents = async () => {
 		const resp = await axios.post("http://localhost:5034/events", {
-			date: dateNaturalLangage
+			startDate: startDateNaturalLangage,
+			endDate: endDateNaturalLangage,
 		})
 		setEventList(resp.data)
-		setDateNaturalLangage("")
+		setStartDateNaturalLangage("")
+		setEndDateNaturalLangage("")
 	}
 
 	const sendRequest = (e) => {
 		e.preventDefault();
-		sendMessageSocket({ text: {}, isForm: true, formType: 'delete_event' });
+		if (chosen) {
+			sendMessageSocket({ text: { id: chosen }, isForm: true, formType: 'delete_event' });
+		} else {
+			alert("Please choose an event");
+		}
 	};
 
 	const handleClickOpen = () => {
@@ -47,6 +54,7 @@ const DeleteEventForm = ({ sendMessageSocket, info }) => {
 					/>
 				</div>
 				<form className="form-body" onSubmit={sendRequest}>
+					<h5>Delete event</h5>
 					<label className="contained">Choose an event</label>
 					<input
 						type="button"
@@ -55,11 +63,21 @@ const DeleteEventForm = ({ sendMessageSocket, info }) => {
 						className="data_input form-choose-btn"
 						onClick={handleClickOpen}
 					/>
-					<input type="submit" value="Envoyer" className="data_submit" />
+					<input type="submit" value="Delete" className="data_submit" />
 				</form>
 			</div>
-			
-			<Slider open={open} title='Delete Event' input={dateNaturalLangage} setInput={setDateNaturalLangage} fetch={fetchEvents} data={eventList} handleClose={handleClose} setChosen={setChosen} />
+			<Slider
+				open={open}
+				title='something'
+				inputStart={startDateNaturalLangage}
+				setInputStart={setStartDateNaturalLangage}
+				inputEnd={endDateNaturalLangage}
+				setInputEnd={setEndDateNaturalLangage}
+				fetch={fetchEvents}
+				data={eventList}
+				handleClose={handleClose}
+				chosen={chosen}
+				setChosen={setChosen} />
 		</>
 	);
 };

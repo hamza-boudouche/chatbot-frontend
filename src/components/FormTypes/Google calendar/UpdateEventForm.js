@@ -17,7 +17,8 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
     title: "event",
     description: "this is a description"
   }]);
-  const [dateNaturalLangage, setDateNaturalLangage] = React.useState("initial");
+  const [startDateNaturalLangage, setStartDateNaturalLangage] = React.useState("");
+  const [endDateNaturalLangage, setEndDateNaturalLangage] = React.useState("");
   const [chosen, setChosen] = React.useState({});
 
   const handleClickOpen = () => {
@@ -29,21 +30,28 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
   };
 
   const fetchEvents = async () => {
-    const resp = await axios.post("http://localhost:5034/events", {
-      date: dateNaturalLangage
+    const resp = await axios.get("http://localhost:5034/events", {
+      startDate: startDateNaturalLangage,
+      endDate: endDateNaturalLangage,
     })
     setEventList(resp.data)
-    setDateNaturalLangage("")
+    setStartDateNaturalLangage("")
+    setEndDateNaturalLangage("")
   }
 
   const sendRequest = (e) => {
     e.preventDefault();
-    const data = { title, description, startTime, endTime };
-    sendMessageSocket({
-      text: data,
-      isForm: true,
-      formType: 'update_event',
-    });
+    if (chosen) {
+      const data = { id: chosen, title, description, startTime, endTime };
+      sendMessageSocket({
+        text: data,
+        isForm: true,
+        formType: 'update_event',
+      });
+    }
+    else {
+      alert("Please choose an event");
+    }
   };
 
   return (
@@ -56,6 +64,7 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
           />
         </div>
         <form className="form-body" onSubmit={sendRequest}>
+          <h5>Update event</h5>
           <label className="contained">Choose an event</label>
           <input
             type="button"
@@ -96,10 +105,21 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
             className="data_input"
             onChange={(e) => setEndTime(e.target.value)}
           />
-          <input type="submit" value="Envoyer" className="data_submit" />
+          <input type="submit" value="Update" className="data_submit" />
         </form>
       </div>
-      <Slider open={open} title='Update Event' input={dateNaturalLangage} setInput={setDateNaturalLangage} fetch={fetchEvents} data={eventList} handleClose={handleClose} setChosen={setChosen} />
+      <Slider
+        open={open}
+        title='something'
+        inputStart={startDateNaturalLangage}
+        setInputStart={setStartDateNaturalLangage}
+        inputEnd={endDateNaturalLangage}
+        setInputEnd={setEndDateNaturalLangage}
+        fetch={fetchEvents}
+        data={eventList}
+        handleClose={handleClose}
+        chosen={chosen}
+        setChosen={setChosen} />
     </>
   );
 };

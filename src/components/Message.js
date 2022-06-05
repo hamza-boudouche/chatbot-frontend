@@ -1,28 +1,31 @@
 import React, { useRef, useEffect } from 'react';
-import useOnScreen from "../hooks/useOnScreen"
+import { useAuth0 } from '@auth0/auth0-react';
+import botPic from "../assets/bot.png";
 
 import logo from '../assets/user.png';
 
 const Message = ({ message: { local, text }, hidden, end, setBtnVisible }) => {
+  const { user } = useAuth0();
   const messageClass = local ? 'sent' : 'received';
   const ref = useRef(null)
   // console.log(ref)
-  const isVisible = useOnScreen(ref);
+  console.log(user)
 
   useEffect(() => {
     console.log(ref.current);
   }, [ref]);
 
-  useEffect(() => {
-    setBtnVisible && setBtnVisible(!isVisible)
-  }, [])
-
   return (
     <div className={`message ${messageClass} ${hidden ? "hidden" : ""}`} id={end ? "end" : ""} ref={ref}>
       <div className="avatar">
         <img
-          src={logo}
+          src={messageClass === "sent" && user?.picture ? user?.picture : botPic}
           alt="avatar"
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: "50%",
+          }}
         />
       </div>
       <div className="message-body">

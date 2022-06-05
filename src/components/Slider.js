@@ -12,12 +12,13 @@ import Slide from '@mui/material/Slide';
 import TextField from '@mui/material/TextField';
 import EventCard from './Cards/EventCard';
 import {Modal} from 'react-bootstrap';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Slider = ({ open, title, input, setInput, fetch, data, handleClose, setChosen }) => {
+const Slider = ({ open, title, input, setInput, fetch, data, handleClose, chosen, setChosen }) => {
 	return (
 		<Dialog
 		    fullscreen
@@ -34,8 +35,7 @@ const Slider = ({ open, title, input, setInput, fetch, data, handleClose, setCho
 						aria-label="close"
 						sx={{height:'50px',width:'' }}
 					>
-						{/* <CloseIcon /> */}
-						<p>X</p>
+						<CloseIcon />
 					</IconButton>
 					<Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
 						{title}
@@ -46,7 +46,15 @@ const Slider = ({ open, title, input, setInput, fetch, data, handleClose, setCho
 						margin: "1px solid grey",
 						backgroundColor: '#F6EEC9',
 						borderRadius:'10px',
-						padding:'0'}} id="standard-basic" label="Date" variant="standard" color="primary" value={  input} onChange={(e) => { setInput(e.target.value) }} />
+						padding:'0'}} id="standard-basic" label="Start Date" variant="standard" color="primary" value={input} onChange={(e) => { setInput(e.target.value) }} />
+					<TextField style={{
+						marginLeft: '1%',
+						maxheight: "5px",  
+						margin: "1px solid grey",
+						backgroundColor: '#F6EEC9',
+						borderRadius:'10px',
+            marginLeft: 2,
+						padding:'0'}} id="standard-basic" label="End Date" variant="standard" color="primary" value={input} onChange={(e) => { setInput(e.target.value) }} />
 					<Button autoFocus variant="outlined" color="inherit" onClick={fetch} style={{
 						marginLeft: '1%',
 						height: "30px",
@@ -63,7 +71,6 @@ const Slider = ({ open, title, input, setInput, fetch, data, handleClose, setCho
 				alignItems: "center",
 				justifyContent: "center",
 			}}>
-				{/* {console.log(eventList.length !== 0)} */}
 				{data.length ? data.map((element, index) => (
 					<div key={index}>
 						<EventCard element={element} setChosen={setChosen} />
