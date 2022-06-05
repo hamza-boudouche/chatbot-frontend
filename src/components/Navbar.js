@@ -31,7 +31,7 @@ const Navbar = () => {
       <div className="navlist">
         <ul>
         {isAuthenticated && (
-            <li className="nav-element"> <Link to="/chat">Chat</Link></li>
+          <li className="nav-element"> <Link to="/chat">Chat</Link></li>
           )}
           <li className="nav-element " ><Link to={"/Features"}>Features</Link></li>
           <li className="nav-element"><Link to={"AboutUs"}>About us</Link></li>
@@ -54,7 +54,7 @@ const Navbar = () => {
                     }
                     alt="Profile"
                     className="nav-user-profile rounded-circle"
-                    width="50" style={{
+                    width="40" style={{
                       borderRadius: "50%",
                       margin: "1rem",
                       border: "1px solid black",

@@ -58,7 +58,8 @@ const DeleteEventForm = ({ sendMessageSocket, info }) => {
 					<input type="submit" value="Envoyer" className="data_submit" />
 				</form>
 			</div>
-			<Slider open={open} title='something' input={dateNaturalLangage} setInput={setDateNaturalLangage} fetch={fetchEvents} data={eventList} handleClose={handleClose} setChosen={setChosen} />
+			
+			<Slider open={open} title='Delete Event' input={dateNaturalLangage} setInput={setDateNaturalLangage} fetch={fetchEvents} data={eventList} handleClose={handleClose} setChosen={setChosen} />
 		</>
 	);
 };
