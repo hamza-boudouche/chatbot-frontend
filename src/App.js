@@ -6,10 +6,12 @@ import history from "./utils/history";
 import './style.css';
 import initFontAwesome from "./utils/initFontAwesome";
 import { useAuth0 } from "@auth0/auth0-react";
-import Loading from "./components/Loading"
-import Profile from './components/Profile';
-import Settings from './components/Settings';
-import useColorTheme from './hooks/useColorTheme';
+
+import Loading from "./components/Loading";
+import Footer from "./components/Footer";
+import Content from "./components/Content";
+import Features from './components/Features';
+import AboutUs from './components/AboutUs';
 
 initFontAwesome();
 
@@ -27,14 +29,19 @@ export default function App() {
   }
 
   return (
-    <BrowserRouter history={history}>
-      <NavBar />
-      <Routes>
-        <Route path="/" exact element={<div></div>} />
-        <Route path="/chat" element={<Chatbot />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
+    <BrowserRouter history={history}
+        <NavBar />
+        {/* <Chatbot /> */}
+        
+        <Footer />
+        <Routes>
+          <Route path="/" exact element={<Content />} />
+          <Route path="/Features" element={<Features />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/chat" element={<Chatbot />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
     </BrowserRouter>
   );
 }

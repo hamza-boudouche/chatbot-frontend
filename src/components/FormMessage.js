@@ -1,8 +1,11 @@
 import React, { useState, useRef } from 'react';
+import micro from '../assets/micro.png';
+import record from '../assets/record.png';
+import msg from '../assets/msg.png';
+
 import SpeechRecognition, {
   useSpeechRecognition,
 } from 'react-speech-recognition';
-
 const FormMessage = ({ sendMessage, dummy }) => {
   const [messageValue, setMessageValue] = useState('');
   const [listening, setListening] = useState(false);
@@ -38,20 +41,32 @@ const FormMessage = ({ sendMessage, dummy }) => {
       <input
         value={listening ? transcript : messageValue}
         onChange={(e) => setMessageValue(e.target.value)}
-        placeholder="Message #Chatbot"
+        placeholder="Type your message here"
         type="text"
         className="message-field"
       />
-      <input
+      <div className="form-btn send-btn">
+      <img
+        className="imgsend"
+        src={listening ? record : micro}
+        onClick={listening ? stopListening : startListening}
+      />
+      </div>
+      {/* <img
+        className="form-btn send-btn imgsend"
+        src={listening ? record : micro}
+        onClick={listening ? stopListening : startListening}
+      /> */}
+      {/* { <input
         type="button"
         className="form-btn voice-btn"
         value={listening ? 'stop' : 'start'}
         onClick={listening ? stopListening : startListening}
-      />
+      />} */}
       <input
         type="submit"
-        className="form-btn send-btn"
-        value="Send"
+        className="form-btn send-btn imginput"
+        value=''
         disabled={!messageValue}
       />
     </form>

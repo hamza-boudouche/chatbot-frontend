@@ -2,6 +2,8 @@ import React, { useRef, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import botPic from "../assets/bot.png";
 
+import logo from '../assets/user.png';
+
 const Message = ({ message: { local, text }, hidden, end, setBtnVisible }) => {
   const { user } = useAuth0();
   const messageClass = local ? 'sent' : 'received';

@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from '../../Slider';
 import axios from 'axios'
+import logo from './user.png';
 
 
 const DeleteEventForm = ({ sendMessageSocket, info }) => {
@@ -48,7 +49,7 @@ const DeleteEventForm = ({ sendMessageSocket, info }) => {
 			<div className={`message received`}>
 				<div className="avatar">
 					<img
-						src="https://cdn-icons-png.flaticon.com/512/1250/1250689.png"
+						src={logo}
 						alt="profile"
 					/>
 				</div>

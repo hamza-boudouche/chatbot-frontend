@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Slide from '@mui/material/Slide';
 import TextField from '@mui/material/TextField';
 import EventCard from './Cards/EventCard';
+import {Modal} from 'react-bootstrap';
 import CloseIcon from '@mui/icons-material/Close';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -20,29 +21,43 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const Slider = ({ open, title, input, setInput, fetch, data, handleClose, chosen, setChosen }) => {
 	return (
 		<Dialog
-			fullScreen
+		    fullscreen
 			open={open}
 			onClose={handleClose}
 			TransitionComponent={Transition}
 		>
-			<AppBar sx={{ position: 'relative', backgroundColor: '#6649b8' }}>
-				<Toolbar>
+			<AppBar sx={{ position: 'relative', backgroundColor: '#c96d17',height:'60px',width:'600px' }}>
+				<Toolbar sx={{}}>
 					<IconButton
 						edge="start"
 						color="inherit"
 						onClick={handleClose}
 						aria-label="close"
+						sx={{height:'50px',width:'' }}
 					>
 						<CloseIcon />
 					</IconButton>
 					<Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
 						{title}
 					</Typography>
-					<TextField id="standard-basic" label="Start Date" variant="outlined" color="primary" value={input} onChange={(e) => { setInput(e.target.value) }} />
-					<TextField id="standard-basic" label="End Date" variant="outlined" color="primary" value={input} onChange={(e) => { setInput(e.target.value) }} sx={{ marginLeft: 2 }} />
+					<TextField style={{
+						marginLeft: '1%',
+						maxheight: "5px",  
+						margin: "1px solid grey",
+						backgroundColor: '#F6EEC9',
+						borderRadius:'10px',
+						padding:'0'}} id="standard-basic" label="Start Date" variant="standard" color="primary" value={input} onChange={(e) => { setInput(e.target.value) }} />
+					<TextField style={{
+						marginLeft: '1%',
+						maxheight: "5px",  
+						margin: "1px solid grey",
+						backgroundColor: '#F6EEC9',
+						borderRadius:'10px',
+            marginLeft: 2,
+						padding:'0'}} id="standard-basic" label="End Date" variant="standard" color="primary" value={input} onChange={(e) => { setInput(e.target.value) }} />
 					<Button autoFocus variant="outlined" color="inherit" onClick={fetch} style={{
-						marginLeft: '10px',
-						height: "82%",
+						marginLeft: '1%',
+						height: "30px",
 						margin: "1px solid grey"
 					}}>
 						Search
@@ -51,7 +66,7 @@ const Slider = ({ open, title, input, setInput, fetch, data, handleClose, chosen
 			</AppBar>
 			<List style={{
 				margin: "auto",
-				minWidth: "600px",
+				minWidth: "60%",
 				display: "grid",
 				alignItems: "center",
 				justifyContent: "center",
