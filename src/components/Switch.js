@@ -58,7 +58,6 @@ export default function CustomizedSwitches() {
 	const [checked, setChecked] = React.useState(state === "dark");
 
 	const handleChange = (event) => {
-		console.log(state)
 		setChecked(event.target.checked);
 		dispatch({ type: event.target.checked ? "activate" : "desactivate" });
 	};

@@ -11,29 +11,28 @@ import Typography from '@mui/material/Typography';
 import Slide from '@mui/material/Slide';
 import TextField from '@mui/material/TextField';
 import EventCard from './Cards/EventCard';
-import {Modal} from 'react-bootstrap';
 import CloseIcon from '@mui/icons-material/Close';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Slider = ({ open, title, input, setInput, fetch, data, handleClose, chosen, setChosen }) => {
+const Slider = ({ open, title, inputStart, setInputStart, inputEnd, setInputEnd, fetch, data, handleClose, chosen, setChosen }) => {
 	return (
 		<Dialog
-		    fullscreen
+			fullscreen
 			open={open}
 			onClose={handleClose}
 			TransitionComponent={Transition}
 		>
-			<AppBar sx={{ position: 'relative', backgroundColor: '#c96d17',height:'60px',width:'600px' }}>
+			<AppBar sx={{ position: 'relative', backgroundColor: '#c96d17', height: '60px', width: '600px' }}>
 				<Toolbar sx={{}}>
 					<IconButton
 						edge="start"
 						color="inherit"
 						onClick={handleClose}
 						aria-label="close"
-						sx={{height:'50px',width:'' }}
+						sx={{ height: '50px', width: '' }}
 					>
 						<CloseIcon />
 					</IconButton>
@@ -42,19 +41,21 @@ const Slider = ({ open, title, input, setInput, fetch, data, handleClose, chosen
 					</Typography>
 					<TextField style={{
 						marginLeft: '1%',
-						maxheight: "5px",  
+						maxheight: "5px",
 						margin: "1px solid grey",
 						backgroundColor: '#F6EEC9',
-						borderRadius:'10px',
-						padding:'0'}} id="standard-basic" label="Start Date" variant="standard" color="primary" value={input} onChange={(e) => { setInput(e.target.value) }} />
+						borderRadius: '10px',
+						padding: '0'
+					}} id="standard-basic" label="Start Date" variant="outlined" color="primary" value={inputStart} onChange={(e) => { setInputStart(e.target.value) }} />
 					<TextField style={{
 						marginLeft: '1%',
-						maxheight: "5px",  
+						maxheight: "5px",
 						margin: "1px solid grey",
 						backgroundColor: '#F6EEC9',
-						borderRadius:'10px',
-            marginLeft: 2,
-						padding:'0'}} id="standard-basic" label="End Date" variant="standard" color="primary" value={input} onChange={(e) => { setInput(e.target.value) }} />
+						borderRadius: '10px',
+						marginLeft: 2,
+						padding: '0'
+					}} id="standard-basic" label="End Date" variant="outlined" color="primary" value={inputEnd} onChange={(e) => { setInputEnd(e.target.value) }} />
 					<Button autoFocus variant="outlined" color="inherit" onClick={fetch} style={{
 						marginLeft: '1%',
 						height: "30px",
@@ -73,7 +74,7 @@ const Slider = ({ open, title, input, setInput, fetch, data, handleClose, chosen
 			}}>
 				{data.length ? data.map((element, index) => (
 					<div key={index}>
-						<EventCard element={element} setChosen={setChosen} />
+						<EventCard element={element} setChosen={setChosen} close={handleClose} />
 					</div>
 				)) :
 					<ListItem button onClick={() => console.log("hello")}>

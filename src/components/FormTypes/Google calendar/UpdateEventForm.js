@@ -19,7 +19,7 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
   }]);
   const [startDateNaturalLangage, setStartDateNaturalLangage] = React.useState("");
   const [endDateNaturalLangage, setEndDateNaturalLangage] = React.useState("");
-  const [chosen, setChosen] = React.useState({});
+  const [chosen, setChosen] = React.useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -30,10 +30,8 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
   };
 
   const fetchEvents = async () => {
-    const resp = await axios.get("http://localhost:5034/events", {
-      startDate: startDateNaturalLangage,
-      endDate: endDateNaturalLangage,
-    })
+    console.log("fetching the events")
+    const resp = await axios.get(`http://localhost:5034/events/${startDateNaturalLangage}/${endDateNaturalLangage}`);
     setEventList(resp.data)
     setStartDateNaturalLangage("")
     setEndDateNaturalLangage("")
@@ -42,6 +40,8 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
   const sendRequest = (e) => {
     e.preventDefault();
     if (chosen) {
+      alert("success")
+      console.log(chosen)
       const data = { id: chosen, title, description, startTime, endTime };
       sendMessageSocket({
         text: data,
@@ -119,7 +119,8 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
         data={eventList}
         handleClose={handleClose}
         chosen={chosen}
-        setChosen={setChosen} />
+        setChosen={setChosen}
+      />
     </>
   );
 };

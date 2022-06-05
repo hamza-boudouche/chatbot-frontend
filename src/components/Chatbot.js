@@ -20,7 +20,6 @@ const Chatbot = () => {
 
   const observer = new IntersectionObserver(
     ([entry]) => {
-      console.log(entry)
       setBtnVisible(!entry.isIntersecting)
     }
   )
@@ -95,9 +94,9 @@ const Chatbot = () => {
                 />
               )
             )}
-          <AddEventForm />
-          <UpdateEventForm />
-          <DeleteEventForm />
+          {/* <AddEventForm />
+          <DeleteEventForm /> */}
+          <UpdateEventForm sendMessageSocket={sendMessageSocket} />
           <GetEventForm />
           <div ref={dummy}></div>
           <Message message="" hidden={true} />

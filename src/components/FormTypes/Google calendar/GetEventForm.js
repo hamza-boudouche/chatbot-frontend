@@ -21,10 +21,8 @@ const GetEventForm = ({ sendMessageSocket, info }) => {
 	};
 
 	const fetchEvents = async () => {
-		const resp = await axios.get("http://localhost:5034/events", {
-			startDate: startDateNaturalLangage,
-			endDate: endDateNaturalLangage,
-		})
+		console.log("fetching the events")
+		const resp = await axios.get(`http://localhost:5034/events/${startDateNaturalLangage}/${endDateNaturalLangage}`);
 		setEventList(resp.data)
 		setStartDateNaturalLangage("")
 		setEndDateNaturalLangage("")

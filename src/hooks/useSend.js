@@ -14,21 +14,28 @@ const useSend = (callbackMessage) => {
         },
       })
     );
-    console.log("socket set")
   }, []);
 
   useEffect(() => {
     socket &&
       socket.on('reply', (message) => {
-        console.log(message);
-        callbackMessage({ text: message.text, isForm: false });
-        // message.forEach((element) => {
-        //   callbackMessage({ text: element.text, isForm: false });
-        // });
+        // callbackMessage({ text: message.text, isForm: false });
+        message.forEach((element) => {
+          console.log(element)
+          if (element.custom) {
+            console.log("i am adding a form")
+            callbackMessage({
+              isForm: true,
+              formType: element.custom.formtype,
+              info: element.custom.info,
+            });
+          } else {
+            callbackMessage({ text: element.text, isForm: false });
+          }
+        });
       });
     socket &&
       socket.on('form', (message) => {
-        console.log(message);
         callbackMessage({
           isForm: true,
           formType: message.formType,
