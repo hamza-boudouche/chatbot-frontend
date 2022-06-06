@@ -3,7 +3,6 @@ import Slider from '../../Slider';
 import axios from 'axios'
 import logo from './user.png';
 
-
 const DeleteEventForm = ({ sendMessageSocket, info }) => {
 	const [open, setOpen] = React.useState(false);
 	const [startDateNaturalLangage, setStartDateNaturalLangage] = React.useState("");
@@ -22,10 +21,8 @@ const DeleteEventForm = ({ sendMessageSocket, info }) => {
 	};
 
 	const fetchEvents = async () => {
-		const resp = await axios.post("http://localhost:5034/events", {
-			startDate: startDateNaturalLangage,
-			endDate: endDateNaturalLangage,
-		})
+		console.log("fetching the events")
+		const resp = await axios.get(`http://localhost:5034/events/${startDateNaturalLangage}/${endDateNaturalLangage}`);
 		setEventList(resp.data)
 		setStartDateNaturalLangage("")
 		setEndDateNaturalLangage("")
@@ -34,7 +31,7 @@ const DeleteEventForm = ({ sendMessageSocket, info }) => {
 	const sendRequest = (e) => {
 		e.preventDefault();
 		if (chosen) {
-			sendMessageSocket({ text: { id: chosen }, isForm: true, formType: 'delete_event' });
+			sendMessageSocket({ text: { id: chosen.id }, isForm: true, formType: 'delete_event' });
 		} else {
 			alert("Please choose an event");
 		}
