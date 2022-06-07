@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from './user.png';
+import logo from '../../../assets/bot.png';
 
 const AddEventForm = ({ sendMessageSocket, info }) => {
   const [title, setTitle] = useState(info?.title || '');

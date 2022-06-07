@@ -33,8 +33,6 @@ export default function App() {
   return (
     <BrowserRouter history={history}>
       <NavBar />
-      {/* <Chatbot /> */}
-
       <Footer />
       <Routes>
         <Route path="/" exact element={<Content />} />

@@ -26,13 +26,13 @@ const Slider = ({ open, title, inputStart, setInputStart, inputEnd, setInputEnd,
 			TransitionComponent={Transition}
 		>
 			<AppBar sx={{ position: 'relative', backgroundColor: '#c96d17', height: '60px', width: '600px' }}>
-				<Toolbar sx={{}}>
+				<Toolbar>
 					<IconButton
 						edge="start"
 						color="inherit"
 						onClick={handleClose}
 						aria-label="close"
-						sx={{ height: '50px', width: '' }}
+						sx={{ height: '50px' }}
 					>
 						<CloseIcon />
 					</IconButton>
@@ -78,7 +78,7 @@ const Slider = ({ open, title, inputStart, setInputStart, inputEnd, setInputEnd,
 					</div>
 				)) :
 					<ListItem button onClick={() => console.log("hello")}>
-						<ListItemText primary="enter a date above" secondary="dates in natural language" />
+						<ListItemText primary="enter start and end dates above in natural language" />
 					</ListItem>}
 			</List>
 		</Dialog>

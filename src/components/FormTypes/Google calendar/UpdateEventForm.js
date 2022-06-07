@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Slider from '../../Slider';
-import logo from './user.png';
+import logo from '../../../assets/bot.png';
 
 const UpdateEventForm = ({ sendMessageSocket, info }) => {
   const [chosen, setChosen] = React.useState(null);
@@ -10,14 +10,7 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
   const [startTime, setStartTime] = useState(chosen?.startTime || '');
   const [endTime, setEndTime] = useState(chosen?.endTime || '');
   const [open, setOpen] = React.useState(false);
-  const [eventList, setEventList] = React.useState([{
-    title: "event",
-    description: "this is a description"
-  },
-  {
-    title: "event",
-    description: "this is a description"
-  }]);
+  const [eventList, setEventList] = React.useState([]);
   const [startDateNaturalLangage, setStartDateNaturalLangage] = React.useState("");
   const [endDateNaturalLangage, setEndDateNaturalLangage] = React.useState("");
 

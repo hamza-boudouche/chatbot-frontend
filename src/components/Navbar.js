@@ -12,7 +12,6 @@ import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import { Link } from "react-router-dom";
 import logo from "../assets/Image1.png";
-import account from "../assets/logo.jpeg";
 const Navbar = () => {
   const { user, isAuthenticated, loginWithRedirect, logout, } = useAuth0();
 
@@ -27,7 +26,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <Link to={"/"} className="logo"><img className="logoimg" src={logo}></img></Link>
+      <Link to={"/"} className="logo"><img className="logoimg" alt="bot" src={logo}></img></Link>
       <div className="navlist">
         <ul>
           <li className="nav-element " ><Link to={"/Features"}>Features</Link></li>
@@ -54,7 +53,6 @@ const Navbar = () => {
                     width="40" style={{
                       borderRadius: "50%",
                       margin: "1rem",
-                      border: "1px solid black",
                       width: "3rem",
                       height: "3rem"
                     }} />

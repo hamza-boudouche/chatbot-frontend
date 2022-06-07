@@ -1,20 +1,13 @@
 import React from 'react';
 import Slider from '../../Slider';
 import axios from 'axios'
-import logo from './user.png';
+import logo from '../../../assets/bot.png';
 
 const GetEventForm = ({ sendMessageSocket, info }) => {
 	const [open, setOpen] = React.useState(false);
 	const [startDateNaturalLangage, setStartDateNaturalLangage] = React.useState("");
 	const [endDateNaturalLangage, setEndDateNaturalLangage] = React.useState("");
-	const [eventList, setEventList] = React.useState([{
-		title: "event",
-		description: "this is a description"
-	},
-	{
-		title: "event",
-		description: "this is a description"
-	}]);
+	const [eventList, setEventList] = React.useState([]);
 
 	const handleClose = () => {
 		setOpen(false);
