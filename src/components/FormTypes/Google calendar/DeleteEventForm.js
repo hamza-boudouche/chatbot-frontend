@@ -58,7 +58,7 @@ const DeleteEventForm = ({ sendMessageSocket, info }) => {
 			</div>
 			<Slider
 				open={open}
-				title='something'
+				title='choose an event'
 				inputStart={startDateNaturalLangage}
 				setInputStart={setStartDateNaturalLangage}
 				inputEnd={endDateNaturalLangage}

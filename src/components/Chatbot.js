@@ -94,10 +94,10 @@ const Chatbot = () => {
                 />
               )
             )}
-          <AddEventForm sendMessageSocket={sendMessageSocket} />
+          {/* <AddEventForm sendMessageSocket={sendMessageSocket} />
           <DeleteEventForm sendMessageSocket={sendMessageSocket} />
           <UpdateEventForm sendMessageSocket={sendMessageSocket} />
-          <GetEventForm />
+          <GetEventForm /> */}
           <div ref={dummy}></div>
           <Message message="" hidden={true} />
         </div>
