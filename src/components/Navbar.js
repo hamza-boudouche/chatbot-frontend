@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -12,9 +12,18 @@ import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import { Link } from "react-router-dom";
 import logo from "../assets/Image1.png";
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import account from "../assets/logo.jpeg";
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import CloseIcon from '@mui/icons-material/Close';
+
+import User from "../assets/user.png";
+import Profile from '../components/Profile';
+import { Toolbar } from '@mui/material';
 const Navbar = () => {
   const { user, isAuthenticated, loginWithRedirect, logout, } = useAuth0();
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -24,16 +33,33 @@ const Navbar = () => {
 
   const handleClose = () => { setAnchorEl(null); };
 
+  const [show, setShow] = useState(false);
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    
+  };
+
+
   return (
     <div className="navbar">
-      <Link to={"/"} className="logo"><img className="logoimg" alt="bot" src={logo}></img></Link>
+      <Link to={"/"} className="logo"><img className="logoimg" src={logo}></img></Link>
       <div className="navlist">
         <ul>
-          <li className="nav-element " ><Link to={"/Features"}>Features</Link></li>
-          <li className="nav-element"><Link to={"AboutUs"}>About us</Link></li>
+          {isAuthenticated && (
+            <li className="nav-element"> <Link to="/chat">Chat</Link></li>
+          )}
+          <li className="nav-element " ><Link to={"/Features"}>Fonctionnalités</Link></li>
+          <li className="nav-element"><Link to={"AboutUs"}>A propos</Link></li>
 
           {!isAuthenticated && (
-            <li className="nav-elementor" onClick={() => loginWithRedirect()}>Register\Login</li>
+            <li className="nav-elementor" onClick={() => loginWithRedirect()}>Se connecter</li>
           )}
           {isAuthenticated && (
             <>
@@ -97,7 +123,9 @@ const Navbar = () => {
                   <ListItemIcon>
                     <PersonIcon fontSize="small" />
                   </ListItemIcon>
-                  <Link to="/profile">Profile</Link>
+                  {/* <button onClick={() => { setShow(true) }}> Profile</button> */}
+
+                  <Link  to="" onClick={() => { setShow(true) }}>Profile</Link> 
                 </MenuItem>
                 <MenuItem>
                   <ListItemIcon>
@@ -123,6 +151,36 @@ const Navbar = () => {
           )}
         </ul>
       </div>
+
+      <Modal open={show} onClose={() => { setShow(false) }}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        
+        <Box sx={style}>
+        <Toolbar sx={{
+          top : '0%',
+          backgroundColor: '#c96d17' }}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            onClick={() => { setShow(false) }}
+            aria-label="close"
+            sx={{ height: '50px', width: '50px', left: '95%' }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Profile
+          </Typography>
+        </Toolbar>
+        <Box  sx={{ bgcolor: 'background.paper',p: 4  }}>
+          <Profile />
+        </Box>
+      </Box>
+      {/*  */}
+
+
+    </Modal>
     </div >
   );
 };
