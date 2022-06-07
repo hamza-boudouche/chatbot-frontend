@@ -14,6 +14,7 @@ import Features from './components/Features';
 import AboutUs from './components/AboutUs';
 import Profile from './components/Profile';
 import Settings from './components/Settings';
+
 initFontAwesome();
 
 export default function App() {
@@ -31,17 +32,16 @@ export default function App() {
 
   return (
     <BrowserRouter history={history}>
-        <NavBar />
-        {/* <Chatbot /> */}
-        <Footer />
-        <Routes>
-          <Route path="/" exact element={<Content />} />
-          <Route path="/Features" element={<Features />} />
-          <Route path="/AboutUs" element={<AboutUs />} />
-          <Route path="/chat" element={<Chatbot />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/settings" element={<Settings />} />
-        </Routes>
+      <NavBar />
+      <Footer />
+      <Routes>
+        <Route path="/" exact element={<Content />} />
+        <Route path="/Features" element={<Features />} />
+        <Route path="/AboutUs" element={<AboutUs />} />
+        <Route path="/chat" element={<Chatbot />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/settings" element={<Settings />} />
+      </Routes>
     </BrowserRouter>
   );
 }

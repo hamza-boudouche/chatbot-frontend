@@ -36,7 +36,6 @@ body,
   transform: scaleX(-1); */
 }
 
-
 .chatbot {
   position: relative;
   background-color: #FFE4C4;
@@ -105,11 +104,11 @@ body,
   background-color: #e5e5ea;
 }
 
-.sent>.message-body {
-  background-color: #F6EEC9;
+.sent > .message-body {
+  background-color: #f6eec9;
 }
 
-.avatar>img {
+.avatar > img {
   width: 30px;
   height: 30px;
   margin: auto;
@@ -127,7 +126,7 @@ body,
   flex-direction: column;
   justify-content: flex-end; */
 }
-.slideanimation{
+.slideanimation {
   animation-duration: 1s;
   animation-name: slidein;
 }
@@ -139,10 +138,9 @@ body,
 
   to {
     margin-left: 0%;
-   
   }
 }
-.chatbot>form {
+.chatbot > form {
   position: fixed;
   bottom: 30;
   background: transparent;
@@ -166,13 +164,11 @@ body,
   color: #791313;
   width: 70%;
   border-radius: 15px;
-  
-
 }
 
 .message-field:focus {
   /* background-color: rgb(253, 251, 251); */
-  background-color: #F6EEC9;
+  background-color: #f6eec9;
   border: 3px solid rgb(250, 250, 250);
   border-color: #791313;
   color: #791313;
@@ -182,7 +178,6 @@ body,
   color: rgb(0, 0, 0);
   border-radius: 20%;
   margin-left: 1%;
-
 }
 
 .imginput {
@@ -202,7 +197,6 @@ body,
   flex-basis: 40px;
   width: 15%;
   text-align: center;
-
 }
 
 .imgsend {
@@ -260,7 +254,6 @@ body,
   height: auto;
   max-width: 100%;
   max-height: 100%;
-
 }
 
 .navbar {
@@ -275,7 +268,6 @@ body,
 }
 
 .logo {
-
   justify-self: start;
   position: absolute;
   height: 100%;
@@ -302,7 +294,7 @@ body,
   margin-left: auto;
 }
 
-.navlist>ul {
+.navlist > ul {
   list-style-type: none;
   display: flex;
   flex-direction: row;
@@ -375,7 +367,6 @@ body,
   display: flex;
   flex-direction: column;
   width: 60vw;
-
 }
 
 .carousel {
@@ -394,7 +385,7 @@ body,
   border-radius: 5px;
   height: 1.5rem;
   padding-left: 10px;
-  background-color: #F6EEC9;
+  background-color: #f6eec9;
   border: 1px solid rgba(255, 255, 255, 0.322);
 }
 
@@ -404,7 +395,7 @@ body,
   border: 1px solid rgba(239, 239, 9, 0.974);
   border-radius: 5px;
   font-weight: bold;
-  background-color: #FFA36C;
+  background-color: #ffa36c;
 }
 
 .data_submit:active,
@@ -441,7 +432,7 @@ body,
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  background-color: #FFA36C;
+  background-color: #ffa36c;
 }
 
 .card-container:hover {
@@ -452,16 +443,19 @@ body,
   background-color: #e1e1e1;
 }
 
-
+.card-main {
+}
 
 .card-title {
   font-size: larger;
   margin-top: 0;
 }
 
-.card-side-info {}
+.card-side-info {
+}
 
-.card-description {}
+.card-description {
+}
 
 a {
   text-decoration: none;

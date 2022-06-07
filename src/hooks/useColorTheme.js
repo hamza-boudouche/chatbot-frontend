@@ -3,10 +3,8 @@ import React from 'react';
 function reducer(state, action) {
 	switch (action.type) {
 		case 'activate':
-			console.log("activating ...");
 			return "dark";
 		case 'desactivate':
-			console.log("desactivating ...");
 			return "light";
 		default:
 			throw new Error();

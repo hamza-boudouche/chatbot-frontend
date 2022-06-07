@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Slider from '../../Slider';
-import logo from './user.png';
+import logo from '../../../assets/bot.png';
 
 const UpdateEventForm = ({ sendMessageSocket, info }) => {
-  const [title, setTitle] = useState(info?.title || '');
-  const [description, setDescription] = useState(info?.description || '');
-  const [startTime, setStartTime] = useState(info?.startTime || '');
-  const [endTime, setEndTime] = useState(info?.endTime || '');
+  const [chosen, setChosen] = React.useState(null);
+  const [title, setTitle] = useState(chosen?.summary || '');
+  const [description, setDescription] = useState(chosen?.description || '');
+  const [startTime, setStartTime] = useState(chosen?.startTime || '');
+  const [endTime, setEndTime] = useState(chosen?.endTime || '');
   const [open, setOpen] = React.useState(false);
-  const [eventList, setEventList] = React.useState([{
-    title: "event",
-    description: "this is a description"
-  },
-  {
-    title: "event",
-    description: "this is a description"
-  }]);
+  const [eventList, setEventList] = React.useState([]);
   const [startDateNaturalLangage, setStartDateNaturalLangage] = React.useState("");
   const [endDateNaturalLangage, setEndDateNaturalLangage] = React.useState("");
-  const [chosen, setChosen] = React.useState({});
+
+  useEffect(() => {
+    setTitle(chosen?.summary || '')
+    setDescription(chosen?.description || '')
+    setStartTime(chosen?.startTime || '')
+    setEndTime(chosen?.endTime || '')
+  }, [chosen])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -30,10 +30,8 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
   };
 
   const fetchEvents = async () => {
-    const resp = await axios.get("http://localhost:5034/events", {
-      startDate: startDateNaturalLangage,
-      endDate: endDateNaturalLangage,
-    })
+    console.log("fetching the events")
+    const resp = await axios.get(`http://localhost:5034/events/${startDateNaturalLangage}/${endDateNaturalLangage}`);
     setEventList(resp.data)
     setStartDateNaturalLangage("")
     setEndDateNaturalLangage("")
@@ -42,12 +40,14 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
   const sendRequest = (e) => {
     e.preventDefault();
     if (chosen) {
-      const data = { id: chosen, title, description, startTime, endTime };
+      console.log(chosen)
+      const data = { id: chosen.id, title, description, startTime, endTime };
       sendMessageSocket({
         text: data,
         isForm: true,
         formType: 'update_event',
       });
+      alert("success")
     }
     else {
       alert("Please choose an event");
@@ -80,6 +80,7 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
             placeholder="title"
             className="data_input"
             onChange={(e) => setTitle(e.target.value)}
+            value={title}
           />
           <label className="contained">Description</label>
           <input
@@ -88,6 +89,7 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
             placeholder="description"
             className="data_input"
             onChange={(e) => setDescription(e.target.value)}
+            value={description}
           />
           <label className="contained">Start time</label>
           <input
@@ -96,6 +98,7 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
             placeholder="start"
             className="data_input"
             onChange={(e) => setStartTime(e.target.value)}
+            value={startTime}
           />
           <label className="contained">End time</label>
           <input
@@ -104,13 +107,14 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
             placeholder="end"
             className="data_input"
             onChange={(e) => setEndTime(e.target.value)}
+            value={endTime}
           />
           <input type="submit" value="Update" className="data_submit" />
         </form>
       </div>
       <Slider
         open={open}
-        title='something'
+        title='choose an event'
         inputStart={startDateNaturalLangage}
         setInputStart={setStartDateNaturalLangage}
         inputEnd={endDateNaturalLangage}
@@ -119,7 +123,8 @@ const UpdateEventForm = ({ sendMessageSocket, info }) => {
         data={eventList}
         handleClose={handleClose}
         chosen={chosen}
-        setChosen={setChosen} />
+        setChosen={setChosen}
+      />
     </>
   );
 };

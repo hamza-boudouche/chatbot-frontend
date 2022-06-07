@@ -1,30 +1,21 @@
 import React from 'react';
 import Slider from '../../Slider';
 import axios from 'axios'
-import logo from './user.png';
+import logo from '../../../assets/bot.png';
 
 const GetEventForm = ({ sendMessageSocket, info }) => {
 	const [open, setOpen] = React.useState(false);
 	const [startDateNaturalLangage, setStartDateNaturalLangage] = React.useState("");
 	const [endDateNaturalLangage, setEndDateNaturalLangage] = React.useState("");
-	const [eventList, setEventList] = React.useState([{
-		title: "event",
-		description: "this is a description"
-	},
-	{
-		title: "event",
-		description: "this is a description"
-	}]);
+	const [eventList, setEventList] = React.useState([]);
 
 	const handleClose = () => {
 		setOpen(false);
 	};
 
 	const fetchEvents = async () => {
-		const resp = await axios.get("http://localhost:5034/events", {
-			startDate: startDateNaturalLangage,
-			endDate: endDateNaturalLangage,
-		})
+		console.log("fetching the events")
+		const resp = await axios.get(`http://localhost:5034/events/${startDateNaturalLangage}/${endDateNaturalLangage}`);
 		setEventList(resp.data)
 		setStartDateNaturalLangage("")
 		setEndDateNaturalLangage("")
@@ -57,7 +48,7 @@ const GetEventForm = ({ sendMessageSocket, info }) => {
 			</div>
 			<Slider
 				open={open}
-				title='something'
+				title='choose an event'
 				inputStart={startDateNaturalLangage}
 				setInputStart={setStartDateNaturalLangage}
 				inputEnd={endDateNaturalLangage}

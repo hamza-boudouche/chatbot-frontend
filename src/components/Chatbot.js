@@ -20,7 +20,6 @@ const Chatbot = () => {
 
   const observer = new IntersectionObserver(
     ([entry]) => {
-      console.log(entry)
       setBtnVisible(!entry.isIntersecting)
     }
   )
@@ -69,8 +68,8 @@ const Chatbot = () => {
 
   return (
     <div >
-      <img src={bot} className="imgbotleft"></img>
-      <img src={bot} className="imgbotright"></img>
+      {/* <img src={bot} className="imgbotleft"></img>
+      <img src={bot} className="imgbotright"></img> */}
       <div className="chatbot">
         <div className="messages-list ">
           {btnVisible && <a href="#end">
@@ -95,10 +94,10 @@ const Chatbot = () => {
                 />
               )
             )}
-          <AddEventForm />
-          <UpdateEventForm />
-          <DeleteEventForm />
-          <GetEventForm />
+          {/* <AddEventForm sendMessageSocket={sendMessageSocket} />
+          <DeleteEventForm sendMessageSocket={sendMessageSocket} />
+          <UpdateEventForm sendMessageSocket={sendMessageSocket} />
+          <GetEventForm /> */}
           <div ref={dummy}></div>
           <Message message="" hidden={true} />
         </div>

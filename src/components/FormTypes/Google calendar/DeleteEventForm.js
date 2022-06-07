@@ -1,31 +1,21 @@
 import React from 'react';
 import Slider from '../../Slider';
 import axios from 'axios'
-import logo from './user.png';
-
+import logo from '../../../assets/bot.png';
 
 const DeleteEventForm = ({ sendMessageSocket, info }) => {
 	const [open, setOpen] = React.useState(false);
 	const [startDateNaturalLangage, setStartDateNaturalLangage] = React.useState("");
 	const [endDateNaturalLangage, setEndDateNaturalLangage] = React.useState("");
-	const [eventList, setEventList] = React.useState([{
-		title: "event",
-		description: "this is a description"
-	},
-	{
-		title: "event",
-		description: "this is a description"
-	}]);
+	const [eventList, setEventList] = React.useState([]);
 	const [chosen, setChosen] = React.useState({});
 	const handleClose = () => {
 		setOpen(false);
 	};
 
 	const fetchEvents = async () => {
-		const resp = await axios.post("http://localhost:5034/events", {
-			startDate: startDateNaturalLangage,
-			endDate: endDateNaturalLangage,
-		})
+		console.log("fetching the events")
+		const resp = await axios.get(`http://localhost:5034/events/${startDateNaturalLangage}/${endDateNaturalLangage}`);
 		setEventList(resp.data)
 		setStartDateNaturalLangage("")
 		setEndDateNaturalLangage("")
@@ -34,7 +24,7 @@ const DeleteEventForm = ({ sendMessageSocket, info }) => {
 	const sendRequest = (e) => {
 		e.preventDefault();
 		if (chosen) {
-			sendMessageSocket({ text: { id: chosen }, isForm: true, formType: 'delete_event' });
+			sendMessageSocket({ text: { id: chosen.id }, isForm: true, formType: 'delete_event' });
 		} else {
 			alert("Please choose an event");
 		}
@@ -68,7 +58,7 @@ const DeleteEventForm = ({ sendMessageSocket, info }) => {
 			</div>
 			<Slider
 				open={open}
-				title='something'
+				title='choose an event'
 				inputStart={startDateNaturalLangage}
 				setInputStart={setStartDateNaturalLangage}
 				inputEnd={endDateNaturalLangage}

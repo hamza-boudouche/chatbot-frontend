@@ -79,7 +79,6 @@ const Navbar = () => {
                     width="40" style={{
                       borderRadius: "50%",
                       margin: "1rem",
-                      border: "1px solid black",
                       width: "3rem",
                       height: "3rem"
                     }} />

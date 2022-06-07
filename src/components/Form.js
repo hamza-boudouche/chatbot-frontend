@@ -8,7 +8,7 @@ const Form = ({ sendMessageSocket, formType, info }) => {
   switch (formType) {
     case 'add_event':
       return <AddEventForm sendMessageSocket={sendMessageSocket} info={info} />;
-    case 'modify_event':
+    case 'update_event':
       return (
         <UpdateEventForm sendMessageSocket={sendMessageSocket} info={info} />
       );

@@ -8,12 +8,6 @@ const Message = ({ message: { local, text }, hidden, end, setBtnVisible }) => {
   const { user } = useAuth0();
   const messageClass = local ? 'sent' : 'received';
   const ref = useRef(null)
-  // console.log(ref)
-  console.log(user)
-
-  useEffect(() => {
-    console.log(ref.current);
-  }, [ref]);
 
   return (
     <div className={`message ${messageClass} ${hidden ? "hidden" : ""}`} id={end ? "end" : ""} ref={ref}>
