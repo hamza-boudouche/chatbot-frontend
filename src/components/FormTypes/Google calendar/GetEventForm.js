@@ -21,8 +21,13 @@ const GetEventForm = ({ sendMessageSocket, info }) => {
 		setEndDateNaturalLangage("")
 	}
 
+	const sendMessage = () => {
+		sendMessageSocket({ text: "/session_start" });
+	};
+
 	const handleClickOpen = () => {
 		setOpen(true);
+		sendMessage();
 	};
 
 	return (

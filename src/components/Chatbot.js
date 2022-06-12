@@ -9,6 +9,9 @@ import AddEventForm from "./FormTypes/Google calendar/AddEventForm";
 import UpdateEventForm from "./FormTypes/Google calendar/UpdateEventForm"
 import DeleteEventForm from "./FormTypes/Google calendar/DeleteEventForm"
 import GetEventForm from './FormTypes/Google calendar/GetEventForm';
+import GetTasksForm from './FormTypes/Trello/GetTasksForm';
+import AddTasksForm from './FormTypes/Trello/AddTasksForm';
+import RemoveTasksForm from './FormTypes/Trello/RemoveTasksForm';
 import bot from "../assets/bot.gif";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
@@ -68,8 +71,8 @@ const Chatbot = () => {
 
   return (
     <div >
-      {/* <img src={bot} className="imgbotleft"></img>
-      <img src={bot} className="imgbotright"></img> */}
+      <img src={bot} className="imgbotleft"></img>
+      <img src={bot} className="imgbotright"></img>
       <div className="chatbot">
         <div className="messages-list ">
           {btnVisible && <a href="#end">
@@ -98,6 +101,10 @@ const Chatbot = () => {
           <DeleteEventForm sendMessageSocket={sendMessageSocket} />
           <UpdateEventForm sendMessageSocket={sendMessageSocket} />
           <GetEventForm /> */}
+          <GetTasksForm sendMessageSocket={sendMessageSocket} />
+          <AddTasksForm sendMessageSocket={sendMessageSocket} />
+          <RemoveTasksForm sendMessageSocket={sendMessageSocket} />
+
           <div ref={dummy}></div>
           <Message message="" hidden={true} />
         </div>

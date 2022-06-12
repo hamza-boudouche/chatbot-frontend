@@ -25,8 +25,8 @@ const Slider = ({ open, title, inputStart, setInputStart, inputEnd, setInputEnd,
 			onClose={handleClose}
 			TransitionComponent={Transition}
 		>
-			<AppBar sx={{ position: 'relative', backgroundColor: '#c96d17', height: '60px', width: '600px' }}>
-				<Toolbar>
+			<AppBar sx={{ position: 'relative', backgroundColor: '#c96d17', height: '100%', minWidth: '800px' }}>
+				<Toolbar sx={{ display: '' }}>
 					<IconButton
 						edge="start"
 						color="inherit"
@@ -36,7 +36,7 @@ const Slider = ({ open, title, inputStart, setInputStart, inputEnd, setInputEnd,
 					>
 						<CloseIcon />
 					</IconButton>
-					<Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+					<Typography sx={{ display: 'inline-block' }} variant="h6" component="div">
 						{title}
 					</Typography>
 					<TextField style={{
